@@ -2,7 +2,13 @@ const express = require("express");
 const ENV = require("dotenv");
 const APP_SERVER = require("./app");
 const NODE_SERVER = express();
+const cors = require("cors");
 const PORT = 4000;
+
+/**
+ * CONFIGURING SERVER WITH CORS
+ */
+NODE_SERVER.use(cors());
 
 /**
  * INJECTING ENVIRONMENT VARIABLES INTO SERVER

@@ -9,9 +9,29 @@ const RestaurantsModel = require("../Models/Restaurants.model");
  * GET RESTAUARNT BY RESTAURANT ID
  */
 RestaurantRouter.get("/getAllRestaurant", function (req, res, next) {
-  res.status(200).json({
-    message: "Restaurants fetched successfully!!",
-  });
+  RestaurantsModel.find()
+    .then((response) => {
+      if (response.length > 0) {
+        res.status(200).json({
+          success: true,
+          message: "Restaurants fetched successfully!!!",
+          data: response,
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "No restaurants found!!!",
+          data: response,
+        });
+      }
+    })
+    .catch((error) => {
+      res.status(400).json({
+        success: false,
+        message: "Bad request!!!",
+        error: error,
+      });
+    });
 });
 
 /**
